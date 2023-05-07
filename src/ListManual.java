@@ -6,9 +6,9 @@ import java.util.*;
 public class ListManual {
 
 /**
- * TODO
- * @author TODO
- * @since  TODO
+ * Answers for Question 1
+ * @author Aneesh Pamula
+ * @since  05/06/2023
  */
 
 // No style for this file. How poetic :D
@@ -19,17 +19,17 @@ public static ArrayList<String>  listManipulations() {
 	// Each index corresponds to the task number. Example is
 	// at index 0.
 
-	//0.       answers.add("h = h.next;");
-	//task 1.  answers.add("TODO");
-	//task 2.  answers.add("TODO");
-	//task 3.  answers.add("TODO");
-	//task 4.  answers.add("TODO");
-	//task 5.  answers.add("TODO");
-	//task 6.  answers.add("TODO");
-	//task 7.  answers.add("TODO");
-	//task 8.  answers.add("TODO");  //put your statements in one line, follow the column Structures
-	//task 9.  answers.add("TODO");  //put your statements in one line, follow the column Structures
-	//task 10. answers.add("TODO");
+	answers.add("h = h.next;");
+	answers.add("h = r;");
+	answers.add("r = h;");
+	answers.add("t = h.next;");
+	answers.add("h.elem = t.elem;");
+	answers.add("h.elem = h.next.next.elem;");
+	answers.add("h.next.next.next = h;");
+	answers.add("h.next = h.next.next;");
+	answers.add("while(r.elem != 'M'){r = r.next}");  //put your statements in one line, follow the column Structures
+	answers.add("h = new Node('A', null); h.next = new Node('B', null); h.next.next = new Node('C', null); h.next.next.next = new Node('D', null);");  //put your statements in one line, follow the column Structures
+	answers.add("h.next.next.next = new Node('D', null)");
 	return answers;
 }
 
