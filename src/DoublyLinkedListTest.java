@@ -69,6 +69,7 @@ class DoublyLinkedListTest {//Constructor testing is in removeMultipleOf method
         assertEquals(list.toString(), "[(head) -> 1 -> 2 -> 3 -> (tail)]");
         list.clear();
         assertEquals(list.toString(), "[(head) -> (tail)]");
+        assertEquals(list.size(), 0);
     }
 
     @Test
