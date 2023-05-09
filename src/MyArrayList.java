@@ -1,6 +1,6 @@
 /*
- * NAME: TODO First Last
- * PID: TODO Axxxxxxxx
+ * NAME: Aneesh pamula
+ * PID: A17319059
  */
 
 import java.util.AbstractList;
@@ -9,8 +9,8 @@ import java.util.AbstractList;
 /**
  * ArrayList Implementation
  *
- * @author TODO
- * @since TODO
+ * @author Aneesh Pamula
+ * @since 5/8/2023
  */
 public class MyArrayList<T> extends AbstractList<T> {
 
@@ -18,7 +18,7 @@ public class MyArrayList<T> extends AbstractList<T> {
     private T  [ ] arrList;
   
     /**
-     * TODO
+     * ArrayList constructor
      */
     public MyArrayList() {
       
@@ -38,7 +38,7 @@ public class MyArrayList<T> extends AbstractList<T> {
      */
     @Override
     public int size() {
-        // TODO: complete implementation
+        return nelems;
     }
 
     /**
@@ -54,7 +54,25 @@ public class MyArrayList<T> extends AbstractList<T> {
     @Override
     public void add(int index, T data)
             throws IndexOutOfBoundsException, NullPointerException {
-        // TODO: complete implementation
+        if(index < 0 || index >= arrList.length + 1)
+            throw new IndexOutOfBoundsException();
+        if(data == null)
+            throw new NullPointerException();
+        if(this.nelems < this.arrList.length){//If there is enough space
+            for(int i = nelems-1; i >= index; i--)//Shift elements from index to end up
+                arrList[i+1] = arrList[i];
+            arrList[index] = data;
+        }
+        else{//If we need to expand the array
+            T[] newArray = (T[]) new Object[nelems+1];
+            for(int i = 0; i < index; i++)
+                newArray[i] = arrList[i];
+            for(int i = index+1; i < newArray.length; i++)
+                newArray[i] = arrList[i-1];
+            newArray[index] = data;
+            arrList = newArray;
+        }
+        nelems++;
     }
 
     /**
@@ -67,7 +85,9 @@ public class MyArrayList<T> extends AbstractList<T> {
      */
     @Override
     public T get(int index) throws IndexOutOfBoundsException {
-        // TODO: complete implementation
+        if(index < 0 || index >= arrList.length)
+            throw new IndexOutOfBoundsException();
+        return arrList[index];
     }
                    
 
@@ -77,7 +97,10 @@ public class MyArrayList<T> extends AbstractList<T> {
      * @return true if list contains given data, false otherwise
      */
     public boolean contains(Object data) {
-        // TODO: complete implementation
+        for(int i = 0; i < nelems; i++)
+            if(arrList[i].equals((T) data))
+                return true;
+        return false;
     }
 
 
@@ -88,8 +111,14 @@ public class MyArrayList<T> extends AbstractList<T> {
      */
     @Override
     public String toString() {
-        // TODO: complete implementation
-
+        String output = "[";
+        for(int i = 0; i < nelems-1; i++){
+            output += arrList[i] + " -> ";
+        }
+        if(!this.isEmpty())
+            output += arrList[nelems-1];
+        output += "]";
+        return output;
     }
 
 

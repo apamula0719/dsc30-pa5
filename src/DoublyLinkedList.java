@@ -1,14 +1,14 @@
 /*
- * NAME: TODO
- * PID: TODO
+ * NAME: Aneesh Pamula
+ * PID: A17319059
  */
 
 import java.util.AbstractList;
 
 /**
- * TODO
- * @author TODO
- * @since TODO
+ * DoublyLinkedList class
+ * @author Aneesh Pamula
+ * @since 5/8/2023
  */
 public class DoublyLinkedList<T> extends AbstractList<T> {
 
@@ -144,7 +144,10 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
      * Adds an element to a certain index in the list, shifting exist elements
      * create room. Does not accept null values.
      *
-     * TODO: Javadoc comments
+     * @param index index to add element to
+     * @param element data of the node to be added
+     * @throws IndexOutOfBoundsException if index is not in range [0, size]
+     * @throws NullPointerException if element is null
      */
     @Override
     public void add(int index, T element)
@@ -172,14 +175,15 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
     /**
      * Determine if the list contains the data element anywhere in the list.
      *
-     * TODO: Javadoc comments
+     * @param element data to check for
+     * @return True if element is in list, false otherwise
      */
     @Override
     public boolean contains(Object element) {
         T data = (T)element;
         Node n = head.next;
         while(n != tail){
-            if(n.getElement() == data)
+            if(n.getElement().equals(data))
                 return true;
             n = n.next;
         }
@@ -189,11 +193,13 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
     /**
      * Retrieves the element stored with a given index on the list.
      *
-     * TODO: Javadoc comments
+     * @param index index to retrieve element from
+     * @return the element at the given index
+     * @throws IndexOutOfBoundsException if index is not in range [0, nelems)
      */
     @Override
     public T get(int index) throws IndexOutOfBoundsException {
-        if(index >= nelems)
+        if((index >= nelems) || (index < 0))
             throw new IndexOutOfBoundsException();
         return getNth(index).getElement();
     }
@@ -201,7 +207,8 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
     /**
      * Helper method to get the Nth node in our list
      *
-     * TODO: Javadoc comments
+     * @param index index of node to get
+     * @return Node at the given index
      */
     private Node getNth(int index) {
         Node n = head;
@@ -213,7 +220,7 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
     /**
      * Determine if the list empty
      *
-     * TODO: javadoc comments
+     * @return True if list is empty, false otherwise
      */
     @Override
     public boolean isEmpty() {
@@ -223,7 +230,9 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
     /**
      * Remove the element from position index in the list
      *
-     * TODO: javadoc comments
+     * @param index index of node to remove
+     * @return value of data in node removed
+     * @throws IndexOutOfBoundsException if index is not in range [0, nelems)
      */
     @Override
     public T remove(int index) throws IndexOutOfBoundsException {
@@ -240,7 +249,11 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
     /**
      * Set the value of an element at a certain index in the list.
      *
-     * TODO: javadoc comments
+     * @param index index of node whose value will be changed
+     * @param element value to change to
+     * @return previous value of node
+     * @throws IndexOutOfBoundsException if index is not in range [0, nelems)
+     * @throws NullPointerException if element is null
      */
     @Override
     public T set(int index, T element)
@@ -259,7 +272,7 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
     /**
      * Retrieves the amount of elements that are currently on the list.
      *
-     * TODO: javadoc comments
+     * @return number of elements in list
      */
     @Override
     public int size() {
@@ -270,7 +283,7 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
      * String representation of this list in the form of:
      * "[(head) -> elem1 -> elem2 -> ... -> elemN -> (tail)]"
 
-     * TODO: javadoc comments
+     * @returns a string of the form [(head) -> elem1 -> elem2 -> ... -> elemN -> (tail)]
      */
     @Override
     public String toString() {
@@ -287,15 +300,21 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
     /**
      * Remove nodes whose index is a multiple of base
      *
-     * TODO: javadoc comments
+     * @param base remove nodes at indices who are a multiple of this value
      */
-    public void removeMultipleOf(int base) {
+    public void removeMultipleOf(int base) throws IllegalArgumentException{
+        if(base < 1)
+            throw new IllegalArgumentException();
         Node n = head.next;
+        int effectiveIndex = 0;//This value represents the
+        // original index of the values, since i is not reliable
         for(int i = 0; i < nelems; i++) {
             n = n.next;
-            if (i % base == 0) {
+            if (effectiveIndex % base == 0) {
                 this.remove(i);
+                i--;
             }
+            effectiveIndex++;
         }
     }
 
@@ -305,7 +324,7 @@ public class DoublyLinkedList<T> extends AbstractList<T> {
      * TODO: javadoc comments
      */
     public void swapSegment(DoublyLinkedList other, int splitIndex) {
-        // TODO: complete implementation
+
     }
 
 }

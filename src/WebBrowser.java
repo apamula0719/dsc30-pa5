@@ -1,13 +1,13 @@
 /*
- * NAME: TODO First Last
- * PID: TODO Axxxxxxxx
+ * NAME: Aneesh Pamula
+ * PID: A17319059
  */
 
 /**
- * TODO
+ * WebBrowser Class
  *
- * @author TODO
- * @since TODO
+ * @author Aneesh Pamula
+ * @since 5/8/2023
  */
 public class WebBrowser {
 
@@ -19,60 +19,79 @@ public class WebBrowser {
     private static final String DEFAULT_PAGE = "google.com";
 
     /**
-     * TODO
+     * Instantiates new WebBrowser object with empty instance variables
+     * and default current page
      */
     public WebBrowser() {
-        // TODO: complete implementation
+        currentPage = DEFAULT_PAGE;
+        history = new MyArrayList<>();
+        prev = new MyStack<>();
+        next = new MyStack<>();
     }
 
     /**
-     * TODO
+     * Returns current page
      */
     public String getCurrentPage() {
-        // TODO: complete implementation
+        return currentPage;
     }
 
     /**
-     * TODO
+     * Opens a new page, pushing the current one to prev
      */
     public void openNewPage(String newLink) {
-        // TODO: complete implementation
+        next = new MyStack<>();
+        prev.push(currentPage);
+        currentPage = newLink;
+        history.add(history.size(), currentPage);
     }
 
     /**
-     * TODO
+     * Goes to the previous page
      */
-    public void previousPage() {
-        // TODO: complete implementation
-
+    public void previousPage() throws IllegalStateException {
+        if(prev.isEmpty())
+            throw new IllegalStateException();
+        next.push(currentPage);
+        currentPage = prev.pop();
+        history.add(history.size(), currentPage);
     }
 
     /**
-     * TODO
+     * Goes to next page
      */
       public void nextPage() {
-        // TODO: complete implementation
+          if(next.isEmpty())
+              throw new IllegalStateException();
+        prev.push(currentPage);
+        currentPage = next.pop();
+        history.add(history.size(), currentPage);
     }
 
     /**
-     * TODO
+     * Clears prev and next and goes to default page, does not reset history
      */
     public void newTab() {
-        // TODO: complete implementation
+        next = new MyStack<>();
+        prev = new MyStack<>();
+        currentPage = DEFAULT_PAGE;
     }
 
     /**
-     * TODO
+     * Returns the history
      */
     public MyArrayList<String> getHistory() {
-        // TODO: complete implementation
+        return history;
     }
 
     /**
-     * TODO
+     * If link is in history, open new page with link. If not, return false
      */
     public boolean findLink(String link) {
-       // TODO: complete implementation
+       if(history.contains(link)){
+           this.openNewPage(link);
+           return true;
+       }
+       return false;
     }
-
 }

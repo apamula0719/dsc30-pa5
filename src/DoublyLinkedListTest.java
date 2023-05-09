@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DoublyLinkedListTest {
+class DoublyLinkedListTest {//Constructor testing is in removeMultipleOf method
 
     DoublyLinkedList<Object> list;
 
@@ -198,11 +198,30 @@ class DoublyLinkedListTest {
 
     @Test
     void removeMultipleOf(){
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.removeMultipleOf(2);
-        assertEquals(list.toString(), "[(head) -> 1 -> 3 -> (tail)]");
+        DoublyLinkedList<Integer> list1 = new DoublyLinkedList<Integer>();
+        DoublyLinkedList<Character> list2 = new DoublyLinkedList<Character>();
+        DoublyLinkedList<String> list3 = new DoublyLinkedList<String>();
+        //First test
+        list1.add(1);
+        list1.add(2);
+        list1.add(3);
+        list1.add(4);
+        list1.removeMultipleOf(3);
+        assertEquals(list1.toString(), "[(head) -> 2 -> 3 -> (tail)]");
+        //Second test
+        list2.add('2');
+        list2.add('4');
+        list2.add('6');
+        list2.add('8');
+        list2.add('0');
+        list2.removeMultipleOf(2);
+        assertEquals(list2.toString(), "[(head) -> 4 -> 8 -> (tail)]");
+        //Third test
+        list3.add("a");
+        list3.add("b");
+        list3.add("c");
+        list3.add("d");
+        list3.removeMultipleOf(1);
+        assertEquals(list3.toString(), "[(head) -> (tail)]");
     }
 }
